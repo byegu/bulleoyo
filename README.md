@@ -39,12 +39,22 @@ Kaia Kairos 테스트넷과 YoYo 코인으로 거래 과정을 시연합니다. 
 | <a href="docs/readme/screens/home.jpg"><img src="docs/readme/screens/home.jpg" width="460" alt="대표 공연과 판매 중인 공연 목록을 보여주는 실제 홈 화면" /></a> | <a href="docs/readme/screens/wallet.jpg"><img src="docs/readme/screens/wallet.jpg" width="460" alt="YoYo 테스트 코인 잔액과 거래 내역을 보여주는 실제 화면" /></a> |
 | 공연 포스터와 일정, 티켓 가격을 확인합니다. | 예매에 사용할 YoYo 잔액과 거래 내역을 확인합니다. |
 
-| 03 · 주문 확인과 결제 | 04 · QR 입장 확인 |
-| :---: | :---: |
-| <a href="docs/readme/screens/order-confirm.jpg"><img src="docs/readme/screens/order-confirm.jpg" width="460" alt="티켓 수량, 응원 팀, 결제 금액을 확인하는 실제 주문 화면" /></a> | <a href="docs/readme/screens/entry-scan.jpg"><img src="docs/readme/screens/entry-scan.jpg" width="210" alt="모바일 QR 검표 화면에서 요청한 정보를 찾을 수 없다는 검증 실패 안내를 보여주는 시연 화면" /></a> |
-| 선택한 티켓·응원 팀·금액을 확인하고 지갑 결제를 진행합니다. | 검표 담당자가 티켓 QR을 확인합니다. 캡처는 **검증 실패 안내** 예시입니다. |
+#### 03 · 주문 확인과 결제
 
-결제 후 발급된 티켓은 [티켓 상세 화면](frontend/src/pages/TicketDetailPage.tsx)에서 확인합니다. 입장 QR은 30초마다 갱신되며 유효 시간은 60초입니다. 위 모바일 캡처는 관객이 QR을 제시한 뒤 사용하는 검표 화면입니다.
+선택한 티켓 수량·응원 팀·결제 금액을 확인하고 지갑 결제를 진행합니다.
+
+<a href="docs/readme/screens/order-confirm.jpg"><img src="docs/readme/screens/order-confirm.jpg" width="800" alt="티켓 수량, 응원 팀, 결제 금액을 확인하는 실제 주문 화면" /></a>
+
+<details>
+<summary><strong>04 · 모바일 QR 검표 화면 보기</strong></summary>
+
+관객의 티켓 QR을 검표 담당자가 확인하는 모바일 화면입니다. 아래 캡처는 **검증 실패 안내** 예시이며 입장 성공 화면이 아닙니다.
+
+<a href="docs/readme/screens/entry-scan.jpg"><img src="docs/readme/screens/entry-scan.jpg" width="240" alt="모바일 QR 검표 화면에서 요청한 정보를 찾을 수 없다는 검증 실패 안내를 보여주는 시연 화면" /></a>
+
+</details>
+
+결제 후 발급된 티켓은 [티켓 상세 화면](frontend/src/pages/TicketDetailPage.tsx)에서 확인합니다. 입장 QR은 30초마다 갱신되며 유효 시간은 60초입니다.
 
 ### 공연팀 · 공연을 관리하고, 정산 규칙을 준비하기
 
