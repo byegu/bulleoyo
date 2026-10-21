@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" role="img" aria-labelledby="title desc"><title id="title">프론트엔드 결제 재시도 판단 흐름</title><desc id="desc">재시도는 중복 실행을 차단한 뒤 최신 주문과 결제를 다시 조회한다. 성공이 확인되면 완료 화면으로 이동하고 처리 중이면 기존 작업을 확인한다. 새 결제가 가능한 실패에는 새 멱등키로 서명을 재개하고 결제 불가 조건에서는 새 실행을 중단한다. 백엔드와 체인은 팀 구현이며 그림은 프론트엔드 판단 경계를 나타낸다.</desc><defs><marker id="arrow-292841" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#292841"/></marker><marker id="arrow-67647A" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#67647A"/></marker><marker id="arrow-5B54FF" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#5B54FF"/></marker><marker id="arrow-D9468D" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#D9468D"/></marker><marker id="arrow-DAD8E9" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#DAD8E9"/></marker><marker id="arrow-218060" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#218060"/></marker><marker id="arrow-A86B13" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#A86B13"/></marker></defs><rect width="1200" height="840" fill="#FCFBFF"/>
+<text x="44" y="58" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="30" fill="#292841" font-weight="700" text-anchor="start">결제 재시도, 화면에서 확인할 경계</text>
+<text x="44" y="92" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="19" fill="#67647A" font-weight="400" text-anchor="start">PaymentPage · 개인 구현 범위: 상태 판단과 화면 전환</text>
+<rect x="44" y="140" width="238" height="112" rx="20" fill="#F1EFFF" stroke="#5B54FF" stroke-width="2"/>
+<text x="66" y="178" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="23" fill="#5B54FF" font-weight="700" text-anchor="start">01  다시 시도</text>
+<text x="66" y="217" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">처리 중 중복 실행 차단</text>
+<path d="M282 196 H346" fill="none" stroke="#5B54FF" stroke-width="2.5" stroke-linejoin="round"  marker-end="url(#arrow-5B54FF)"/>
+<rect x="350" y="140" width="398" height="112" rx="20" fill="#FFFFFF" stroke="#DAD8E9" stroke-width="1.5"/>
+<text x="374" y="178" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="23" fill="#292841" font-weight="700" text-anchor="start">02  최신 상태 확인</text>
+<text x="374" y="217" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="19" fill="#67647A" font-weight="400" text-anchor="start">주문·결제 상태를 다시 조회</text>
+<path d="M748 196 H814" fill="none" stroke="#5B54FF" stroke-width="2.5" stroke-linejoin="round"  marker-end="url(#arrow-5B54FF)"/>
+<rect x="818" y="140" width="338" height="112" rx="20" fill="#F8F7FC" stroke="#DAD8E9" stroke-width="1.5"/>
+<text x="842" y="178" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="23" fill="#292841" font-weight="700" text-anchor="start">03  결과에 맞게 분기</text>
+<text x="842" y="217" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">API 접수만으로 완료하지 않음</text>
+<path d="M987 252 V291 H190 V333" fill="none" stroke="#67647A" stroke-width="2.5" stroke-linejoin="round"  marker-end="url(#arrow-67647A)"/>
+<path d="M987 291 H600 V333" fill="none" stroke="#67647A" stroke-width="2.5" stroke-linejoin="round"  marker-end="url(#arrow-67647A)"/>
+<path d="M987 291 H1010 V333" fill="none" stroke="#67647A" stroke-width="2.5" stroke-linejoin="round"  marker-end="url(#arrow-67647A)"/>
+<rect x="44" y="337" width="292" height="174" rx="20" fill="#EDF8F3" stroke="#A9D7C3" stroke-width="1.5"/>
+<text x="68" y="376" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="23" fill="#218060" font-weight="700" text-anchor="start">완료 확인</text>
+<text x="68" y="417" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">최신 조회 또는 체인 작업에서</text>
+<text x="68" y="448" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">성공을 확인한 경우</text>
+<text x="68" y="485" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="21" fill="#218060" font-weight="700" text-anchor="start">완료 화면으로 이동</text>
+<rect x="454" y="337" width="292" height="174" rx="20" fill="#F1EFFF" stroke="#C9C3FF" stroke-width="1.5"/>
+<text x="478" y="376" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="23" fill="#5B54FF" font-weight="700" text-anchor="start">처리 중</text>
+<text x="478" y="417" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">진행 중인 작업이 있으면</text>
+<text x="478" y="448" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">새 결제를 시작하지 않음</text>
+<text x="478" y="485" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="21" fill="#5B54FF" font-weight="700" text-anchor="start">기존 작업 이어서 확인</text>
+<rect x="864" y="337" width="292" height="174" rx="20" fill="#FFF7E8" stroke="#E6C995" stroke-width="1.5"/>
+<text x="888" y="376" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="23" fill="#A86B13" font-weight="700" text-anchor="start">새 결제 가능 여부</text>
+<text x="888" y="417" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">주문 상태 · 유효 시간 등</text>
+<text x="888" y="448" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">다시 결제할 조건 확인</text>
+<text x="888" y="485" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="21" fill="#A86B13" font-weight="700" text-anchor="start">가능한 경우에만 재개</text>
+<path d="M1010 511 V551 H753 V592" fill="none" stroke="#A86B13" stroke-width="2.5" stroke-linejoin="round"  marker-end="url(#arrow-A86B13)"/>
+<text x="834" y="572" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="17" fill="#A86B13" font-weight="400" text-anchor="start">가능</text>
+<path d="M1010 551 H1047 V592" fill="none" stroke="#67647A" stroke-width="2.5" stroke-linejoin="round"  marker-end="url(#arrow-67647A)"/>
+<text x="1070" y="572" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="17" fill="#67647A" font-weight="400" text-anchor="start">불가</text>
+<rect x="565" y="596" width="360" height="128" rx="20" fill="#FFF7E8" stroke="#E6C995" stroke-width="1.5"/>
+<text x="589" y="635" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="23" fill="#A86B13" font-weight="700" text-anchor="start">새 멱등키로 서명 재개</text>
+<text x="589" y="671" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">실패한 작업은 다시 복원하지 않음</text>
+<text x="589" y="701" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">성공 확인 전에는 완료 처리 보류</text>
+<rect x="955" y="596" width="201" height="128" rx="20" fill="#F3F2F7" stroke="#DAD8E9" stroke-width="1.5"/>
+<text x="1055" y="640" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="22" fill="#292841" font-weight="700" text-anchor="middle">새 결제</text>
+<text x="1055" y="675" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="22" fill="#292841" font-weight="700" text-anchor="middle">시작 중단</text>
+<line x1="44" y1="767" x2="1156" y2="767" stroke="#DAD8E9"/>
+<text x="44" y="806" font-family='"Malgun Gothic", "Noto Sans KR", Arial, sans-serif' font-size="18" fill="#67647A" font-weight="400" text-anchor="start">서명 요청·체인 작업·서버 상태 반영은 비동기이며, 이 그림은 프론트엔드의 판단 흐름을 요약합니다.</text>
+</svg>

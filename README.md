@@ -89,17 +89,7 @@ Kaia Kairos 테스트넷과 YoYo 코인으로 거래 과정을 시연합니다. 
 
 재시도 전에 주문·결제 상태를 다시 조회합니다. 처리 중인 작업이 있으면 새 결제를 시작하지 않고 기존 작업을 이어서 확인합니다. 실패 후 다시 결제할 수 있는 경우에는 새로운 멱등키로 서명을 재개하며, 실패한 작업을 다시 복원하지 않도록 처리했습니다.
 
-```mermaid
-flowchart TD
-  Retry[다시 시도] --> Refresh[최신 주문·결제 조회]
-  Refresh --> Done{완료됐는가}
-  Done -- 예 --> Success[완료 화면]
-  Done -- 아니오 --> Paying{처리 중인가}
-  Paying -- 예 --> Resume[기존 작업 확인]
-  Paying -- 아니오 --> Allowed{새 결제가 가능한가}
-  Allowed -- 예 --> New[새 멱등키로 서명 재개]
-  Allowed -- 아니오 --> Stop[새 결제 시작 중단]
-```
+<a href="docs/readme/payment-recovery.svg"><img src="docs/readme/payment-recovery.png" width="100%" alt="프론트엔드 결제 재시도 흐름: 중복 실행 차단과 최신 주문·결제 조회 후, 완료 확인·기존 작업 확인·새 멱등키 서명 재개·시작 중단으로 분기" /></a>
 
 - [결제 화면](frontend/src/pages/PaymentPage.tsx)
 - [결제 상태·재시도 테스트](frontend/src/pages/PaymentPage.live.test.tsx)
@@ -125,17 +115,11 @@ flowchart TD
 
 ## 시스템 구조
 
-```mermaid
-flowchart LR
-  User[React Web] --> API[Spring Boot API]
-  User --> Wallet[사용자 지갑 서명]
-  Wallet --> Chain[Kaia Kairos]
-  API --> SQL[(MySQL)]
-  API --> Cache[(Redis)]
-  API --> Chain
-  Chain --> YoYo[YoYo Contract]
-  Chain --> Splitter[RevenueSplitter]
-```
+최종 발표자료의 시스템 연결 구조와 기술 로고를 활용해 문서용으로 재구성했습니다. 보라색은 개인 담당인 프론트엔드 결제 상태·재시도 복구 범위이며, 나머지는 팀 전체 시스템입니다. 이미지를 누르면 확대할 수 있습니다.
+
+<a href="docs/readme/system-architecture.svg"><img src="docs/readme/system-architecture.png" width="100%" alt="불러요 팀 시스템 구조: React 프론트엔드의 Web3Auth 지갑 연동, Spring Boot API, MySQL·Redis, Kaia Kairos의 YoYo·RevenueSplitter와 개인 프론트엔드 담당 범위" /></a>
+
+[그림 구성과 원본 안내](docs/readme/architecture-sources.md)
 
 프론트엔드는 서버 응답과 사용자 지갑 작업을 연결합니다. 블록체인 작업과 서버 상태 반영이 비동기로 이어지므로, API 접수나 화면 변경만으로 결제 완료를 판단하지 않습니다.
 
